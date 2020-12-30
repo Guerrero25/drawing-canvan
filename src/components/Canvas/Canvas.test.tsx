@@ -3,7 +3,14 @@ import Canvas from ".";
 
 describe("Canvas component", () => {
   it("renders the canvas tag element", () => {
-    const { container } = render(<Canvas id="testing-canvas" />);
+    const { container } = render(
+      <Canvas
+        id="testing-canvas"
+        onStartDrawing={() => {}}
+        onMoveDrawing={() => {}}
+        onEndDrawing={() => {}}
+      />
+    );
 
     const canvasElement = container.querySelector("canvas#testing-canvas");
 
@@ -12,13 +19,20 @@ describe("Canvas component", () => {
 
   it("renders the canvas tag element with the width and height properties", () => {
     const { container } = render(
-      <Canvas id="testing-canvas" width={400} height={400} />
+      <Canvas
+        id="testing-canvas"
+        width={400}
+        height={400}
+        onStartDrawing={() => {}}
+        onMoveDrawing={() => {}}
+        onEndDrawing={() => {}}
+      />
     );
 
     const canvasElement = container.querySelector("canvas#testing-canvas");
 
-    expect(canvasElement.getAttribute("width")).toEqual("400");
-    expect(canvasElement.getAttribute("height")).toEqual("400");
+    expect(canvasElement?.getAttribute("width")).toEqual("400");
+    expect(canvasElement?.getAttribute("height")).toEqual("400");
   });
 
   it("should call onStartDrawing, onMoveDrawing and onEndDrawing", () => {
@@ -36,7 +50,9 @@ describe("Canvas component", () => {
       />
     );
 
-    const canvasElement = container.querySelector("canvas#testing-canvas");
+    const canvasElement = container.querySelector(
+      "canvas#testing-canvas"
+    ) as HTMLCanvasElement;
     const canvasCtx = canvasElement?.getContext("2d");
     const mockEvent = new MouseEvent("");
 
@@ -65,7 +81,9 @@ describe("Canvas component", () => {
       />
     );
 
-    const canvasElement = container.querySelector("canvas#testing-canvas");
+    const canvasElement = container.querySelector(
+      "canvas#testing-canvas"
+    ) as HTMLCanvasElement;
 
     fireEvent.mouseMove(canvasElement);
     fireEvent.mouseDown(canvasElement);

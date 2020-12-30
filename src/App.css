@@ -4,7 +4,7 @@
   width: 100vw;
   height: 100vh;
   padding: 2rem;
-  background: #5290a1;
+  background: var(--primary-color);
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -14,14 +14,10 @@
 }
 
 .drawing-canvas-container .main {
-  background: #ebeded;
+  background: var(--background);
   grid-column: -2 / 1;
 }
 
 .drawing-canvas-container .tools {
   grid-column: -2;
-}
-
-.canvas {
-  background: #ebeded;
 }

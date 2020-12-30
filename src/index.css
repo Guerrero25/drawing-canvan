@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #385273;
+  --background: #f2f2f2;
+}
+
 body,
 html {
   margin: 0;

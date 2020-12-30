@@ -1,41 +1,92 @@
+import { useEffect, useRef, useState } from "react";
+
 import Canvas from "./components/Canvas";
+import ShapeSelect, { ShapeSelectOption } from "./components/ShapeSelect";
+
+import { Shape } from "./models/Shape";
+import { ShapeFactory, ShapeOptions } from "./models";
+
+import square from "./assets/icons/square.svg";
+import line from "./assets/icons/diagonal-line.svg";
+import squareFilled from "./assets/icons/square_filled.svg";
+import pencil from "./assets/icons/pencil.svg";
 
 import "./App.css";
 
-let x = 0;
-let y = 0;
+const options: ShapeSelectOption[] = [
+  {
+    label: "Pencil",
+    value: "pencil",
+    imageSrc: pencil,
+  },
+  {
+    label: "Line",
+    value: "line",
+    imageSrc: line,
+  },
+  {
+    label: "Square",
+    value: "square",
+    imageSrc: square,
+  },
+  {
+    label: "Square filled",
+    value: "square_filled",
+    imageSrc: squareFilled,
+  },
+];
 
 function App() {
+  const mainRef = useRef<HTMLDivElement>(null);
+  const shapeInstance = useRef<Shape | null>(null);
+  const [canvasSize, setCanvasSize] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
+  const [selectedShape, setSelectedShape] = useState<ShapeOptions>("pencil");
+
+  useEffect(() => {
+    setCanvasSize({
+      width: mainRef.current?.offsetWidth || 100,
+      height: mainRef.current?.offsetHeight || 100,
+    });
+  }, []);
+
   return (
     <div className="drawing-canvas-container">
-      <div className="main">
+      <div className="main" ref={mainRef}>
         <Canvas
           id="drawing-board"
-          width="100%"
-          height="100%"
+          width={canvasSize?.width}
+          height={canvasSize?.height}
           onStartDrawing={(ctx, e) => {
-            x = e.offsetX;
-            y = e.offsetY;
+            shapeInstance.current = ShapeFactory.createShape(
+              selectedShape,
+              ctx,
+              {
+                lineWidth: 1,
+              }
+            );
+
+            shapeInstance.current.start(e);
           }}
           onMoveDrawing={(ctx, e) => {
-            ctx.beginPath();
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = 1;
-            ctx.moveTo(x, y);
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-            ctx.closePath();
-
-            x = e.offsetX;
-            y = e.offsetY;
+            shapeInstance.current?.draw(e);
           }}
           onEndDrawing={(ctx, e) => {
-            x = 0;
-            y = 0;
+            shapeInstance.current?.end(e);
+
+            shapeInstance.current = null;
           }}
         />
       </div>
-      <div className="tools"></div>
+      <div className="tools">
+        <ShapeSelect
+          selected={selectedShape}
+          options={options}
+          onSelect={setSelectedShape}
+        />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.shape-select-container {
+  background: var(--background);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.shape-select-container > .shape-select-option {
+  border: 5px solid var(--background);
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+  height: 60px;
+  width: 60px;
+}
+
+.shape-select-container > .shape-select-option.selected {
+  background: var(--primary-color);
+}
+
+.shape-select-option > .option-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.shape-select-option.selected > .option-icon {
+  color: var(--background);
+  filter: invert(1);
+}

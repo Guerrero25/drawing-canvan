@@ -1,0 +1,4 @@
+.canvas {
+  background: var(--background);
+  cursor: url("../../assets/icons/pencil.png"), crosshair;
+}

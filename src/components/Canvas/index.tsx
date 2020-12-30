@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
+
+import "./style.css";
 
 interface CanvasProps {
   id: string;
-  width: number | string;
-  height: number | string;
+  width?: number | string;
+  height?: number | string;
   onStartDrawing: (ctx: any, e: MouseEvent) => void;
   onMoveDrawing: (ctx: any, e: MouseEvent) => void;
   onEndDrawing: (ctx: any, e: MouseEvent) => void;
@@ -17,10 +19,6 @@ function Canvas({
   onMoveDrawing,
   onEndDrawing,
 }: CanvasProps) {
-  const [canvasSize, setCanvasSize] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
 
@@ -56,29 +54,28 @@ function Canvas({
   );
 
   useEffect(() => {
+    removeListeners();
+
     canvasRef.current?.addEventListener("mousedown", handleMouseDown);
     canvasRef.current?.addEventListener("mousemove", handleMouseMove);
     canvasRef.current?.addEventListener("mouseup", handleMouseUp);
 
-    if (width === "100%" && height === "100%") {
-      setCanvasSize({
-        width: canvasRef.current?.offsetWidth || 100,
-        height: canvasRef.current?.offsetHeight || 100,
-      });
-    }
-
     return () => {
       removeListeners();
     };
-  }, []);
+  }, [handleMouseDown, handleMouseMove, handleMouseUp]);
 
   return (
     <canvas
+      className="canvas"
       ref={canvasRef}
       id={id}
-      width={canvasSize?.width || width}
-      height={canvasSize?.height || height}
-      style={{ width, height }}
+      width={width}
+      height={height}
+      style={{
+        width,
+        height,
+      }}
     ></canvas>
   );
 
