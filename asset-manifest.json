@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/drawing-canvas/static/css/main.87480fdb.chunk.css",
+    "main.js": "/drawing-canvas/static/js/main.b8918c88.chunk.js",
+    "main.js.map": "/drawing-canvas/static/js/main.b8918c88.chunk.js.map",
+    "runtime-main.js": "/drawing-canvas/static/js/runtime-main.2697b06b.js",
+    "runtime-main.js.map": "/drawing-canvas/static/js/runtime-main.2697b06b.js.map",
+    "static/js/2.53cd0eed.chunk.js": "/drawing-canvas/static/js/2.53cd0eed.chunk.js",
+    "static/js/2.53cd0eed.chunk.js.map": "/drawing-canvas/static/js/2.53cd0eed.chunk.js.map",
+    "static/js/3.64344d1e.chunk.js": "/drawing-canvas/static/js/3.64344d1e.chunk.js",
+    "static/js/3.64344d1e.chunk.js.map": "/drawing-canvas/static/js/3.64344d1e.chunk.js.map",
+    "index.html": "/drawing-canvas/index.html",
+    "static/css/main.87480fdb.chunk.css.map": "/drawing-canvas/static/css/main.87480fdb.chunk.css.map",
+    "static/js/2.53cd0eed.chunk.js.LICENSE.txt": "/drawing-canvas/static/js/2.53cd0eed.chunk.js.LICENSE.txt",
+    "static/media/diagonal-line.9af8c884.svg": "/drawing-canvas/static/media/diagonal-line.9af8c884.svg",
+    "static/media/style.css": "/drawing-canvas/static/media/pencil.48a509a8.png",
+    "static/media/pencil.ebb08039.svg": "/drawing-canvas/static/media/pencil.ebb08039.svg",
+    "static/media/square.6759a701.svg": "/drawing-canvas/static/media/square.6759a701.svg",
+    "static/media/square_filled.d725d725.svg": "/drawing-canvas/static/media/square_filled.d725d725.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2697b06b.js",
+    "static/js/2.53cd0eed.chunk.js",
+    "static/css/main.87480fdb.chunk.css",
+    "static/js/main.b8918c88.chunk.js"
+  ]
+}
